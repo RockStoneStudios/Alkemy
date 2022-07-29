@@ -1,7 +1,8 @@
 import {Request,Response} from 'express';
 import * as userRepository from '../../repository/userRepository';
-import {comparePassword} from '../../utils/encrypt';
+import {comparePassword,generateSignature} from '../../utils/encrypt';
 import { Usuario } from '../../models/Usuario';
+
 
 
 export const login = async(req:Request,res: Response) => {
@@ -10,6 +11,9 @@ export const login = async(req:Request,res: Response) => {
 
      if(!userExist) return res.status(401).json({message : "User has not been register!!"});
       const passwordCompare = await comparePassword(password,userExist.password);
-      console.log(passwordCompare);
+      if(!passwordCompare) return res.status(403).json({message : "Password  do not match"});
+      const {id,nombre} = userExist;
+      const token = generateSignature({id : id, nombre : nombre , email : email});
+      return res.status(200).json({message : "Login Sucessfull", token});
 }
 

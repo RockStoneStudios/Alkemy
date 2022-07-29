@@ -27,6 +27,6 @@ const getByEmail = (email) => __awaiter(void 0, void 0, void 0, function* () { r
 exports.getByEmail = getByEmail;
 const deleteById = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield Usuario_1.Usuario.destroy({ where: { id: id } }); });
 exports.deleteById = deleteById;
-const updateById = (id, payload) => __awaiter(void 0, void 0, void 0, function* () { return yield Usuario_1.Usuario.update({ payload }, { where: { id: id } }); });
+const updateById = (id, payload) => __awaiter(void 0, void 0, void 0, function* () { return yield Usuario_1.Usuario.update(payload, { where: { id: id } }); });
 exports.updateById = updateById;
 //# sourceMappingURL=userRepository.js.map

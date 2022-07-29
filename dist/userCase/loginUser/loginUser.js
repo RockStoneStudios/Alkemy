@@ -41,7 +41,11 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!userExist)
         return res.status(401).json({ message: "User has not been register!!" });
     const passwordCompare = yield (0, encrypt_1.comparePassword)(password, userExist.password);
-    console.log(passwordCompare);
+    if (!passwordCompare)
+        return res.status(403).json({ message: "Password  do not match" });
+    const { id, nombre } = userExist;
+    const token = (0, encrypt_1.generateSignature)({ id: id, nombre: nombre, email: email });
+    return res.status(200).json({ message: "Login Sucessfull", token });
 });
 exports.login = login;
 //# sourceMappingURL=loginUser.js.map
