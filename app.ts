@@ -1,5 +1,6 @@
 import express, {Application} from 'express';
 import * as userRouter from './routes/userRoutes';
+import * as personajeRouter from './routes/personajeRoutes';
 import cors from 'cors';
 import db from './db/connection';
 
@@ -7,7 +8,8 @@ class Server {
     private app : Application;
     private port : string;
     private apiPaths = {
-         usuarios : "/api/usuarios"
+         usuarios : "/api/usuarios",
+         personajes : '/api/characters'
     }
 
     constructor() {
@@ -46,7 +48,8 @@ class Server {
     }
     
     routes() {
-        this.app.use(this.apiPaths.usuarios,userRouter.default)
+        this.app.use(this.apiPaths.usuarios,userRouter.default);
+        this.app.use(this.apiPaths.personajes,personajeRouter.default);
     }
 }
 

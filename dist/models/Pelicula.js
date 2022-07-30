@@ -3,35 +3,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Usuario = void 0;
+exports.Pelicula = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-;
-class Usuario extends sequelize_1.Model {
+class Pelicula extends sequelize_1.Model {
 }
-exports.Usuario = Usuario;
-Usuario.init({
+exports.Pelicula = Pelicula;
+Pelicula.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
+    },
+    imagen: {
+        type: sequelize_1.DataTypes.STRING,
     },
     nombre: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
-    password: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
+    fecha_creacion: {
+        type: sequelize_1.DataTypes.DATE,
+    },
+    calificacion: {
+        type: sequelize_1.DataTypes.INTEGER,
+        validate: {
+            min: 1,
+            max: 5
+        }
     }
 }, {
-    timestamps: false,
+    timestamps: true,
     sequelize: connection_1.default,
-    modelName: "Usuario"
+    modelName: 'Pelicula'
 });
-//# sourceMappingURL=Usuario.js.map
+//# sourceMappingURL=Pelicula.js.map

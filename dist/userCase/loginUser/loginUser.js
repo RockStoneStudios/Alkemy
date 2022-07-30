@@ -33,11 +33,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
-const userRepository = __importStar(require("../../repository/userRepository"));
+const Repository = __importStar(require("../../repository/userRepository"));
 const encrypt_1 = require("../../utils/encrypt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
-    const userExist = yield userRepository.getByEmail(email);
+    const userExist = yield Repository.getByEmail(email);
     if (!userExist)
         return res.status(401).json({ message: "User has not been register!!" });
     const passwordCompare = yield (0, encrypt_1.comparePassword)(password, userExist.password);

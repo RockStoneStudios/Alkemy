@@ -32,26 +32,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register = void 0;
-const Repository = __importStar(require("../../repository/userRepository"));
-const encrypt_1 = require("../../utils/encrypt");
-const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, email, password } = req.body;
+exports.getAllCharacter = void 0;
+const Repository = __importStar(require("../../repository/characterRepository"));
+const getAllCharacter = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const userExist = yield Repository.getByEmail(email);
-        if (!userExist) {
-            const passwordEncrypt = yield (0, encrypt_1.encryptPassword)(password);
-            console.log(password, passwordEncrypt);
-            const newUser = yield Repository.create({ nombre, email, password });
-            return res.status(201).json({ message: "User Register Sucessfull", newUser });
-        }
-        else {
-            return res.status(400).json({ message: "User has been Register with this Email!!" });
-        }
+        const personajes = yield Repository.getAll();
+        return res.status(200).json(personajes);
     }
     catch (error) {
         console.log(error);
     }
 });
-exports.register = register;
-//# sourceMappingURL=registerUser.js.map
+exports.getAllCharacter = getAllCharacter;
+//# sourceMappingURL=getAll.js.map

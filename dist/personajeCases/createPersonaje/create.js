@@ -32,26 +32,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register = void 0;
-const Repository = __importStar(require("../../repository/userRepository"));
-const encrypt_1 = require("../../utils/encrypt");
-const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, email, password } = req.body;
+exports.create = void 0;
+const Repository = __importStar(require("../../repository/characterRepository"));
+// crear 
+const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { nombre, imagen, edad, peso, historia } = req.body;
     try {
-        const userExist = yield Repository.getByEmail(email);
-        if (!userExist) {
-            const passwordEncrypt = yield (0, encrypt_1.encryptPassword)(password);
-            console.log(password, passwordEncrypt);
-            const newUser = yield Repository.create({ nombre, email, password });
-            return res.status(201).json({ message: "User Register Sucessfull", newUser });
+        const personaje = yield Repository.getByName(nombre);
+        if (!personaje) {
+            const nuevoPersonaje = yield Repository.create({ nombre, imagen, edad, peso, historia });
+            return res.status(201).json({ message: "Character already has been with successfull" });
         }
-        else {
-            return res.status(400).json({ message: "User has been Register with this Email!!" });
-        }
+        return res.status(400).json({ message: "There is a registered character with that name" });
     }
     catch (error) {
         console.log(error);
     }
 });
-exports.register = register;
-//# sourceMappingURL=registerUser.js.map
+exports.create = create;
+//mostrar 
+//mostrar por Id
+//Delete por Id
+//Update por Id
+//# sourceMappingURL=create.js.map

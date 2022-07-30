@@ -1,16 +1,16 @@
 import {Request,Response} from 'express';
-import * as userRepository from '../../repository/userRepository';
+import * as Repository from '../../repository/userRepository';
 import {encryptPassword} from '../../utils/encrypt';
 
 
 export const register = async(req : Request, res : Response) =>{
         const {nombre,email,password} = req.body;
        try {
-           const userExist = await userRepository.getByEmail(email);
+           const userExist = await Repository.getByEmail(email);
             if(!userExist) {
                 const passwordEncrypt = await encryptPassword(password);
                  console.log( password,passwordEncrypt);
-                const newUser = await userRepository.create({nombre,email,password});
+                const newUser = await Repository.create({nombre,email,password});
 
                 return res.status(201).json({message : "User Register Sucessfull",newUser});
             }else {

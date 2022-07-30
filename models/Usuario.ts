@@ -1,16 +1,16 @@
 import {Sequelize,DataTypes,Model} from 'sequelize';
 import sequelize  from '../db/connection';
 
-type UserAttributes = {
+  interface IUsuario  {
     id: number,
     nombre: string,
     email : string,
     password : string
-    // other attributes...
+    
   };
   
 
-class Usuario extends Model <UserAttributes>{
+class Usuario extends Model <IUsuario>{
     declare id : number;
     declare nombre : string;
     declare email : string;
@@ -20,9 +20,10 @@ class Usuario extends Model <UserAttributes>{
 
     Usuario.init({
         id : {
-            type : DataTypes.NUMBER,
+            type : DataTypes.INTEGER,
              autoIncrement : true,
-             primaryKey : true
+             primaryKey : true,
+             allowNull : false
         },
         nombre :{
           type : DataTypes.STRING,
@@ -40,6 +41,7 @@ class Usuario extends Model <UserAttributes>{
         }
         
     },{
+         timestamps : false,
         sequelize, 
         modelName : "Usuario"
     })

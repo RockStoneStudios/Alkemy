@@ -28,12 +28,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userRouter = __importStar(require("./routes/userRoutes"));
+const personajeRouter = __importStar(require("./routes/personajeRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("./db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
-            usuarios: "/api/usuarios"
+            usuarios: "/api/usuarios",
+            personajes: '/api/characters'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '3000';
@@ -63,6 +65,7 @@ class Server {
     }
     routes() {
         this.app.use(this.apiPaths.usuarios, userRouter.default);
+        this.app.use(this.apiPaths.personajes, personajeRouter.default);
     }
 }
 const server = new Server();

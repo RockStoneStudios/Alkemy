@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateById = exports.deleteById = exports.getByEmail = exports.getById = exports.getAll = exports.create = void 0;
+exports.getByName = exports.updateById = exports.deleteById = exports.getByEmail = exports.getById = exports.getAll = exports.create = void 0;
 const Usuario_1 = require("../models/Usuario");
 const encrypt_1 = require("../utils/encrypt");
+const Personaje_1 = require("../models/Personaje");
 const create = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     if (payload.password) {
         payload.password = yield (0, encrypt_1.encryptPassword)(payload.password);
@@ -31,5 +32,7 @@ const deleteById = (id) => __awaiter(void 0, void 0, void 0, function* () { retu
 exports.deleteById = deleteById;
 const updateById = (id, payload) => __awaiter(void 0, void 0, void 0, function* () { return yield Usuario_1.Usuario.update(payload, { where: { id: id } }); });
 exports.updateById = updateById;
+const getByName = (nombre) => __awaiter(void 0, void 0, void 0, function* () { return yield Personaje_1.Personaje.findOne({ where: { nombre: nombre } }); });
+exports.getByName = getByName;
 // export const getByName = async(nombre : string) => await Genero.findOne({where : {nombre : nombre}});
-//# sourceMappingURL=userRepository.js.map
+//# sourceMappingURL=Repository.js.map
