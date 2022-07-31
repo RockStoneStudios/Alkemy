@@ -1,4 +1,5 @@
 
+import { Op } from "sequelize";
 import { Personaje } from "../models/Personaje";
 
 export const create = async (payload : any) => {
@@ -17,3 +18,6 @@ export const getById = async (id: string) => await Personaje.findOne({where : {i
 export const deleteById = async (id : string) => await Personaje.destroy({where : {id : id}});
 
 export const updateById = async (payload : any,id : string) => await Personaje.update(payload,{where : {id : id}});
+
+
+export const getByQuerys= async (edad?: any,nombre?: any,) => await Personaje.findOne({where :{[Op.or] : [{nombre: nombre},{edad : edad}]}});

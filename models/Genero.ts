@@ -28,6 +28,7 @@ class Genero extends Model <IGenero> {
      },
      imagen : {
         type : DataTypes.STRING,
+        defaultValue : "https://i.ytimg.com/vi/x3qDhSJpbn0/maxresdefault.jpg"
       
      }
  },{

@@ -1,5 +1,5 @@
 import {Request,Response} from 'express';
-import * as Repository from '../../repository/userRepository';
+import * as Repository from '../../repositories/userRepository';
 import {comparePassword,generateSignature} from '../../utils/encrypt';
 import { Usuario } from '../../models/Usuario';
 

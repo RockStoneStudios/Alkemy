@@ -22,6 +22,7 @@ Genero.init({
     },
     imagen: {
         type: sequelize_1.DataTypes.STRING,
+        defaultValue: "https://i.ytimg.com/vi/x3qDhSJpbn0/maxresdefault.jpg"
     }
 }, {
     timestamps: false,

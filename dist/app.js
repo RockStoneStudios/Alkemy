@@ -29,13 +29,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userRouter = __importStar(require("./routes/userRoutes"));
 const personajeRouter = __importStar(require("./routes/personajeRoutes"));
+const peliculaRouter = __importStar(require("./routes/peliculasRoutes"));
+const GeneroRouter = __importStar(require("./routes/generoRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("./db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
             usuarios: "/api/usuarios",
-            personajes: '/api/characters'
+            personajes: '/api/characters',
+            peliculas: '/api/movies',
+            generos: '/api/genres'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '3000';
@@ -66,6 +70,8 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.usuarios, userRouter.default);
         this.app.use(this.apiPaths.personajes, personajeRouter.default);
+        this.app.use(this.apiPaths.peliculas, peliculaRouter.default);
+        this.app.use(this.apiPaths.generos, GeneroRouter.default);
     }
 }
 const server = new Server();

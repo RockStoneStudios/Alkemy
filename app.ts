@@ -1,6 +1,8 @@
 import express, {Application} from 'express';
 import * as userRouter from './routes/userRoutes';
 import * as personajeRouter from './routes/personajeRoutes';
+import * as peliculaRouter from './routes/peliculasRoutes';
+import * as GeneroRouter from './routes/generoRoutes';
 import cors from 'cors';
 import db from './db/connection';
 
@@ -9,7 +11,9 @@ class Server {
     private port : string;
     private apiPaths = {
          usuarios : "/api/usuarios",
-         personajes : '/api/characters'
+         personajes : '/api/characters',
+         peliculas : '/api/movies',
+         generos : '/api/genres'
     }
 
     constructor() {
@@ -50,6 +54,8 @@ class Server {
     routes() {
         this.app.use(this.apiPaths.usuarios,userRouter.default);
         this.app.use(this.apiPaths.personajes,personajeRouter.default);
+        this.app.use(this.apiPaths.peliculas,peliculaRouter.default);
+        this.app.use(this.apiPaths.generos,GeneroRouter.default);
     }
 }
 

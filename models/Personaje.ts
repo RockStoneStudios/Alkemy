@@ -1,6 +1,6 @@
 import {Model,DataTypes,Sequelize} from 'sequelize';
 import sequelize from '../db/connection';
-
+import {Pelicula} from './Pelicula';
  interface IPersonaje  {
     id : number
     nombre : string,
@@ -54,6 +54,10 @@ class Personaje extends Model <IPersonaje>{
     timestamps : false,
     sequelize,
     modelName : 'Personaje'
- })
+ });
+
+ Personaje.belongsToMany(Pelicula,{through : "PersonajePelicula"});
+Pelicula.belongsToMany(Personaje, {through : "PersonajePelicula"});
+
 
  export {Personaje}

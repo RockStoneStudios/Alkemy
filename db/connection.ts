@@ -1,7 +1,7 @@
 import {Sequelize} from 'sequelize';
 
 
-const db = new Sequelize('disney','root','3105060237',{
+const db = new Sequelize('disney','root','',{
     host : 'localhost',
     dialect : 'mysql',
 });

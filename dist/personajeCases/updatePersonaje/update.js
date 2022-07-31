@@ -33,7 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateCharacter = void 0;
-const Repository = __importStar(require("../../repository/characterRepository"));
+const Repository = __importStar(require("../../repositories/characterRepository"));
 const updateCharacter = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         //  const personaje = await Repository.getById(req.params.id);

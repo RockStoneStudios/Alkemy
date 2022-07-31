@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Personaje = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
+const Pelicula_1 = require("./Pelicula");
 class Personaje extends sequelize_1.Model {
 }
 exports.Personaje = Personaje;
@@ -39,4 +40,6 @@ Personaje.init({
     sequelize: connection_1.default,
     modelName: 'Personaje'
 });
+Personaje.belongsToMany(Pelicula_1.Pelicula, { through: "PersonajePelicula" });
+Pelicula_1.Pelicula.belongsToMany(Personaje, { through: "PersonajePelicula" });
 //# sourceMappingURL=Personaje.js.map

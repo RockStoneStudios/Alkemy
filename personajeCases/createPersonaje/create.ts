@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as Repository from '../../repository/characterRepository';
+import * as Repository from '../../repositories/characterRepository';
 
 
 // crear 

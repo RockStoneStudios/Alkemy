@@ -33,7 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
-const Repository = __importStar(require("../../repository/userRepository"));
+const Repository = __importStar(require("../../repositories/userRepository"));
 const encrypt_1 = require("../../utils/encrypt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
