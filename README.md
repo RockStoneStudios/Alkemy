@@ -4,7 +4,7 @@
 - abrelo en tu editor favorito visual studio code, vim etc ...
 - instala las dependencias npm install
 - crea una base de datos de nombre disney 
-- abre la collecion alkemy en postman 
+- abre la collecion alkemy en postman ### Alkemy.postman_collection.json
 
 ##Conclusiones
 
